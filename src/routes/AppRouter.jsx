@@ -1,5 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import LoginPage from "../pages/LoginPage";
+import RegisterPage from "../pages/RegisterPage";
+import Dashboard from "../pages/Dashboard";
+import ProjectsPage from "../pages/ProjectsPage";
+import TasksPage from "../pages/TasksPage";
 
 export default function AppRouter() {
   return (
