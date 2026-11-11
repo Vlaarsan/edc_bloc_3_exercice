@@ -1,0 +1,25 @@
+<div class="page">
+  <h1>Tâches</h1>
+  <form (ngSubmit)="create()">
+    <input placeholder="Titre" [(ngModel)]="newTask.title" name="title" required />
+    <input placeholder="Description" [(ngModel)]="newTask.description" name="description" />
+    <select [(ngModel)]="newTask.priority" name="priority">
+      <option value="LOW">Basse</option>
+      <option value="MEDIUM">Moyenne</option>
+      <option value="HIGH">Haute</option>
+    </select>
+    <select [(ngModel)]="newTask.status" name="status">
+      <option value="TODO">À faire</option>
+      <option value="IN_PROGRESS">En cours</option>
+      <option value="DONE">Terminé</option>
+    </select>
+    <input type="number" placeholder="ID du projet" [(ngModel)]="newTask.projectId" name="projectId" />
+    <button type="submit">Créer la tâche</button>
+  </form>
+  <ul class="task-list">
+    <li *ngFor="let t of tasks">
+      <strong>{{ t.title }}</strong> - {{ t.status }} - {{ t.priority }} (projet : {{ t.projectId }})
+    </li>
+  </ul>
+  <p *ngIf="tasks.length === 0">Aucune tâche pour le moment.</p>
+</div>

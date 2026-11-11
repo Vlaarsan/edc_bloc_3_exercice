@@ -1,0 +1,9 @@
+<div class="dashboard">
+  <h1>Tableau de bord</h1>
+  <p *ngIf="user">Bienvenue, <strong>{{ user.username }}</strong> ({{ user.email }})</p>
+  <div class="actions">
+    <button routerLink="/projects">Voir les projets</button>
+    <button routerLink="/tasks">Voir les tâches</button>
+    <button (click)="logout()">Déconnexion</button>
+  </div>
+</div>

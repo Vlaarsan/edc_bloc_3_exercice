@@ -1,0 +1,16 @@
+<div class="page">
+  <h1>Projets</h1>
+  <form (ngSubmit)="create()">
+    <input placeholder="Nom du projet" [(ngModel)]="newProject.name" name="name" required />
+    <input placeholder="Description" [(ngModel)]="newProject.description" name="description" />
+    <input type="date" placeholder="Date de début" [(ngModel)]="newProject.startDate" name="startDate" />
+    <input type="number" placeholder="ID du propriétaire" [(ngModel)]="newProject.ownerId" name="ownerId" />
+    <button type="submit">Créer le projet</button>
+  </form>
+  <ul class="project-list">
+    <li *ngFor="let p of projects">
+      <strong>{{ p.name }}</strong> - {{ p.description }} (propriétaire : {{ p.ownerId }})
+    </li>
+  </ul>
+  <p *ngIf="projects.length === 0">Aucun projet pour le moment.</p>
+</div>

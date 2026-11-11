@@ -1,0 +1,52 @@
+# ============================================================================
+# Docker Compose - Project Management Tool
+# ============================================================================
+
+services:
+  # --- Base de données MySQL ---
+  mysql:
+    image: mysql:8.0
+    container_name: pmt-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: projectdb
+      MYSQL_USER: pmtuser
+      MYSQL_PASSWORD: pmtpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - pmt_mysql_data:/var/lib/mysql
+      - ./bdd.sql:/docker-entrypoint-initdb.d/bdd.sql
+
+  # --- Backend Spring Boot ---
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: pmt-backend
+    restart: always
+    depends_on:
+      - mysql
+    environment:
+      SPRING_PROFILES_ACTIVE: mysql
+      MYSQL_HOST: mysql
+      MYSQL_USER: pmtuser
+      MYSQL_PASSWORD: pmtpass
+    ports:
+      - "8080:8080"
+
+  # --- Frontend Angular ---
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: pmt-frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+
+volumes:
+  pmt_mysql_data:

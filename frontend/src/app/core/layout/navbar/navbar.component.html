@@ -1,0 +1,7 @@
+<nav class="navbar">
+  <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+  <a routerLink="/projects" routerLinkActive="active">Projets</a>
+  <a routerLink="/tasks" routerLinkActive="active">Tâches</a>
+  <span class="spacer"></span>
+  <button (click)="logout()" *ngIf="auth.isAuthenticated()">Déconnexion</button>
+</nav>
