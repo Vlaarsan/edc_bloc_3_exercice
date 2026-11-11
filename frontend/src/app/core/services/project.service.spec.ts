@@ -45,7 +45,7 @@ describe('ProjectService', () => {
     });
     const req = httpMock.expectOne('/projects');
     expect(req.request.method).toBe('POST');
-    expect(req.body.name).toBe('Projet B');
+    expect(req.request.body.name).toBe('Projet B');
     req.flush(created);
   });
 });

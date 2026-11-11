@@ -45,7 +45,7 @@ describe('TaskService', () => {
     });
     const req = httpMock.expectOne('/tasks');
     expect(req.request.method).toBe('POST');
-    expect(req.body.title).toBe('Tâche B');
+    expect(req.request.body.title).toBe('Tâche B');
     req.flush(created);
   });
 });
