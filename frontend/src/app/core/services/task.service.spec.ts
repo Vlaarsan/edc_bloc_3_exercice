@@ -32,7 +32,7 @@ describe('TaskService', () => {
       expect(tasks.length).toBe(1);
       expect(tasks[0].title).toBe('Tâche A');
     });
-    const req = httpMock.expectOne('/tasks');
+    const req = httpMock.expectOne('http://localhost:8080/tasks');
     expect(req.request.method).toBe('GET');
     req.flush(mockTasks);
   });
@@ -43,7 +43,7 @@ describe('TaskService', () => {
     service.create(newTask as any).subscribe((task) => {
       expect(task.id).toBe(2);
     });
-    const req = httpMock.expectOne('/tasks');
+    const req = httpMock.expectOne('http://localhost:8080/tasks');
     expect(req.request.method).toBe('POST');
     expect(req.request.body.title).toBe('Tâche B');
     req.flush(created);

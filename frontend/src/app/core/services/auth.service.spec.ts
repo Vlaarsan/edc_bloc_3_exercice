@@ -32,7 +32,7 @@ describe('AuthService', () => {
       expect(user.username).toBe('alice');
       expect(localStorage.getItem('currentUser')).toBeTruthy();
     });
-    const req = httpMock.expectOne('/users');
+    const req = httpMock.expectOne('http://localhost:8080/users');
     expect(req.request.method).toBe('GET');
     req.flush([mockUser]);
   });
@@ -41,7 +41,7 @@ describe('AuthService', () => {
     service.loginAsync('bad@test.com', 'pw').subscribe({
       error: (err) => expect(err.message).toBe('Identifiants incorrects')
     });
-    httpMock.expectOne('/users').flush([]);
+    httpMock.expectOne('http://localhost:8080/users').flush([]);
   });
 
   it('register should store the new user', () => {

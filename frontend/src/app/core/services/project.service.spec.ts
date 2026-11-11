@@ -32,7 +32,7 @@ describe('ProjectService', () => {
       expect(projects.length).toBe(1);
       expect(projects[0].name).toBe('Projet A');
     });
-    const req = httpMock.expectOne('/projects');
+    const req = httpMock.expectOne('http://localhost:8080/projects');
     expect(req.request.method).toBe('GET');
     req.flush(mockProjects);
   });
@@ -43,7 +43,7 @@ describe('ProjectService', () => {
     service.create(newProject).subscribe((project) => {
       expect(project.id).toBe(2);
     });
-    const req = httpMock.expectOne('/projects');
+    const req = httpMock.expectOne('http://localhost:8080/projects');
     expect(req.request.method).toBe('POST');
     expect(req.request.body.name).toBe('Projet B');
     req.flush(created);
