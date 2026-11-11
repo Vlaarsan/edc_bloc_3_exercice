@@ -50,7 +50,7 @@ describe('AuthService', () => {
       expect(user.username).toBe('bob');
       expect(localStorage.getItem('currentUser')).toBeTruthy();
     });
-    const req = httpMock.expectOne('/users');
+    const req = httpMock.expectOne('http://localhost:8080/users');
     expect(req.request.method).toBe('POST');
     req.flush(mockUser);
   });

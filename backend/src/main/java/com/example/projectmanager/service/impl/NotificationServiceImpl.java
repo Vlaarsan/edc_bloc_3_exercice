@@ -28,7 +28,7 @@ public class NotificationServiceImpl implements NotificationService {
                 .user(user)
                 .message(message)
                 .type(type)
-                .isRead(false)
+                .read(false)
                 .build();
 
         Notification saved = notificationRepository.save(notification);
@@ -57,7 +57,7 @@ public class NotificationServiceImpl implements NotificationService {
     public void markAsRead(Long notificationId) {
         Notification notification = notificationRepository.findById(notificationId)
                 .orElseThrow(() -> new RuntimeException("Notification not found"));
-        notification.setIsRead(true);
+        notification.setRead(true);
         notificationRepository.save(notification);
     }
 
@@ -67,7 +67,7 @@ public class NotificationServiceImpl implements NotificationService {
                 .userId(notification.getUser().getId())
                 .message(notification.getMessage())
                 .type(notification.getType())
-                .isRead(notification.isIsRead())
+                .read(notification.isRead())
                 .createdAt(notification.getCreatedAt())
                 .build();
     }
